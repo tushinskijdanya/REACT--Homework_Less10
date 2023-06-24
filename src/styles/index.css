@@ -73,6 +73,7 @@
 .about-content {
   width: 1300px;
   background: #c093e8;
+  display: flex;
   margin: 0 auto;
 }
 
@@ -94,6 +95,7 @@
 }
 
 .blog_content {
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -317,4 +319,30 @@ button:disabled {
 .save-button:disabled {
   box-shadow: none;
   background: rgb(121, 184, 121);
+}
+
+.deleteRecipe-button {
+  cursor: pointer;
+  border-bottom: 1px solid rgb(179, 167, 167);
+  color: rgb(179, 167, 167);
+  position: relative;
+  right: -700px;
+}
+
+.deleteRecipe-button:hover {
+  border-bottom: 1px solid rgb(203, 148, 76);
+  color: rgb(203, 148, 76);
+}
+
+.quantityRecipes {
+  padding-top: 90px;
+  max-width: 500px;
+  color: #ff0099a2;
+  font-family: 'Amatic SC';
+  font-weight: 700;
+  font-size: 80px;
+}
+
+.quantityRecipes-change {
+  color: #cd0909;
 }

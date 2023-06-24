@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { pushPostAC } from "../store/reducer";
 import { screensavers } from "../data/screensavers";
 
 function CreatePost () {
+    const navigate = useNavigate();
     const { quantity, posts } = useSelector(state => state);
     const [newPost, setNewPost] = useState({
         image: '',
@@ -65,17 +67,26 @@ function CreatePost () {
 
     function sendPost (e) {
         e.preventDefault();
-        dispatch(pushPostAC(newPost));
-        alert('Рецепт успешно добавлен!');
-        setNewPost((prev) => {
-            let temp = {...prev};
-            temp.image = '';
-            temp.title = '';
-            temp.stage = '';
-            temp.blog = '';
-            return temp;
-        })
-        console.log(posts)
+        if (newPost.title, newPost.stage, newPost.blog === '') {
+            alert('Заполнение всех полей в форме обязательно! Пожалуйста, заполните все поля и попробуйте ещё раз!');
+        } else if (newPost.image === '') {
+            alert('Пожалуйста, выберите заставку для своего рецепта!');
+        } else {
+            dispatch(pushPostAC(newPost));
+            setNewPost((prev) => {
+                let temp = {...prev};
+                temp.image = '';
+                temp.title = '';
+                temp.stage = '';
+                temp.blog = '';
+                return temp;
+            })
+            let beginCreate = confirm('Ваш рецепт успешно размещён в вашем блоге! Хотите добавить ещё один?')
+            if (!beginCreate) {
+                navigate('/blog');
+            }
+            
+        }
     }
 
     function changeInput(e) {

@@ -9,9 +9,11 @@ const defaultState = {
 const reducer = (state = defaultState, action) => {
     switch(action.type) {
         case 'PUSH_POST':
-            return {...state, posts: state.posts.push(action.payload), quantity: state.quantity + 1};
+            return {...state, posts: [...state.posts, action.payload], quantity: state.quantity + 1};
         case 'REMOVE_POST':
-            return {...state, posts: state.posts.split(action.payload, 1), quantity: state.quantity - 1}
+            state.posts.splice(action.payload, 1)
+            let temp = state.posts;
+            return {...state, posts: temp, quantity: state.quantity - 1};
         default: return state;
     }
 }
