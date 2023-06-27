@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { removePostAC } from "../store/reducer";
+import { removePostAC } from "../store/postReducer";
 
 function Blog () {
-    const { posts } = useSelector(state => state);
+    const { posts } = useSelector(state => state.pos);
+    const statet = useSelector(state => state)
     const navigate = useNavigate();
     const toPostPage = (post) => navigate(`/blog/${post.id}`, {state: {title: post.title, image: post.image, blog: post.blog}});
 

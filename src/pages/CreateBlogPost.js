@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { pushPostAC } from "../store/reducer";
+import { pushPostAC } from "../store/postReducer";
 import { screensavers } from "../data/screensavers";
 
 function CreatePost () {
     const navigate = useNavigate();
-    const { quantity, posts } = useSelector(state => state);
+    const { quantity } = useSelector(state => state.pos);
     const [newPost, setNewPost] = useState({
         image: '',
         title: '',

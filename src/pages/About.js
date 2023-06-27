@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 function AboutMe () {
-    const { quantity } = useSelector(state => state);
+    const { quantity } = useSelector(state => state.pos);
 
     return(
         <div className="about-container">
