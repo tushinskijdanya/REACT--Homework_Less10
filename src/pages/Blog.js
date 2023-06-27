@@ -4,11 +4,11 @@ import { removePostAC } from "../store/postReducer";
 
 function Blog () {
     const { posts } = useSelector(state => state.pos);
-    const statet = useSelector(state => state)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
     const toPostPage = (post) => navigate(`/blog/${post.id}`, {state: {title: post.title, image: post.image, blog: post.blog}});
 
-    const dispatch = useDispatch();
     function deleteRecipe (idx) {
         let delPost = confirm('Вы уверены, что хотите удалить этот рецепт?');
         delPost && dispatch(removePostAC(idx));

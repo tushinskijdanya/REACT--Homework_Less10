@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 
 function Notes () {
     const dispatch = useDispatch();
-    const { quant } = useSelector(state => state.not);
+    const { quant, notes } = useSelector(state => state.not);
     const [newNote, setNewNote] = useState({
-        note: '',
-        id: quant + 1
+        note: ''
     });
 
     function changeInput(e) {
@@ -17,7 +16,7 @@ function Notes () {
 
     function saveNote () {
         if (newNote.note !== '') {
-            dispatch(pushNoteAC(newNote));
+            dispatch(pushNoteAC({note: newNote.note, id: notes.length + 1}));
             setNewNote((prev) => {
                 let temp = {...prev};
                 temp.note = '';

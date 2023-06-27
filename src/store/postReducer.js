@@ -10,8 +10,8 @@ export const postReducer = (state = postState, action) => {
         case 'PUSH_POST':
             return {...state, posts: [...state.posts, action.payload], quantity: state.quantity + 1};
         case 'REMOVE_POST':
-            state.posts.splice(action.payload, 1)
             let temp = state.posts;
+            temp.splice(action.payload, 1);
             return {...state, posts: temp, quantity: state.quantity - 1};
         default: return state;
     }

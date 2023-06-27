@@ -6,13 +6,12 @@ import { screensavers } from "../data/screensavers";
 
 function CreatePost () {
     const navigate = useNavigate();
-    const { quantity } = useSelector(state => state.pos);
+    const { posts } = useSelector(state => state.pos);
     const [newPost, setNewPost] = useState({
         image: '',
         title: '',
         stage: '',
-        blog: '',
-        id: quantity + 1
+        blog: ''
     });
     const [choosePage, setChoosePage] = useState(false);
     const [idx, setIdx] = useState(0);
@@ -67,12 +66,12 @@ function CreatePost () {
 
     function sendPost (e) {
         e.preventDefault();
-        if (newPost.title, newPost.stage, newPost.blog === '') {
+        if (newPost.title === '' || newPost.stage === '' || newPost.blog === '') {
             alert('Заполнение всех полей в форме обязательно! Пожалуйста, заполните все поля и попробуйте ещё раз!');
         } else if (newPost.image === '') {
             alert('Пожалуйста, выберите заставку для своего рецепта!');
         } else {
-            dispatch(pushPostAC(newPost));
+            dispatch(pushPostAC({...newPost, id: posts.length + 1}));
             setNewPost((prev) => {
                 let temp = {...prev};
                 temp.image = '';
@@ -81,11 +80,10 @@ function CreatePost () {
                 temp.blog = '';
                 return temp;
             })
-            let beginCreate = confirm('Ваш рецепт успешно размещён в вашем блоге! Хотите добавить ещё один?')
+            let beginCreate = confirm('Ваш рецепт успешно размещён в вашем блоге! Хотите добавить ещё один?');
             if (!beginCreate) {
                 navigate('/blog');
             }
-            
         }
     }
 
